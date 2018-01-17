@@ -158,8 +158,13 @@ function incrementSeconds(arr){
 
 // Previous lengths:
 function previousLengths(arr){
-    for(i = 1; i < arr.length; i++){
-        arr[i] = arr[i-1].length;
+    for(i = 0; i < arr.length; i++){
+        arr[i] = arr[i].length;
+    }
+    for(i = arr.length-1; i>0; i--){
+      var temp = arr[i];
+      arr[i] = arr[i-1];
+      arr[i-1] = temp;
     }
     return arr;
 }
