@@ -121,20 +121,100 @@ function concat(arr1, arr2){
 }
 
 // Array: Remove Negatives
+function removeNegatives(arr){
+    var negIndex = 0;
+    for(i=0;i<arr.length; i++){
+        if(arr[i] < 0){
+            negIndex = i;
+            for(j=negIndex; j<arr.length-1; j++){
+                arr[j] = arr[j+1];
+            }
+            arr.pop();
+            i--;
+        }
+    }
+    return arr;
+}
 
 // Array: Second to Last
+function secondToLast(arr){
+    if(arr.length > 1){
+        return arr[arr.length-2];
+    } else {
+        return false;
+    }
+}
 
 // Array: Nth to Last
+function nthToLast(arr, num){
+    if(arr.length > 1){
+        return arr[arr.length-num];
+    } else {
+        return false;
+    }
+}
 
 // Array: Second Largest
+// function secondLargest(arr){
+//     var max = arr[0];
+//     var min = arr[0];
+//     var second = arr[0];
+//     for(i=0;i<arr.length; i++){
+//         if(arr[i] > max){
+//             max = arr[i];
+//         }
+//         if(arr[i] < min){
+//             min = arr[i];
+//         }
+//         if(arr[i] > min && arr[i] < max){
+//             second = arr[i];
+//         }
+//     }
+//     return second;
+// }
 
 // Array: Nth Largest
 
 // Array: Shuffle
+function shuffleArr(arr){
+    var randIndex = Math.floor((Math.random() * (0, arr.length-1) + 0));
+    for(i=0;i<arr.length;i++){
+        var temp = arr[i];
+        arr[i]= arr[randIndex];
+        arr[randIndex] = temp;
+    }
+    return arr;
+}
 
 // Array: Remove Range
+function removeRange(arr, start, end){
+    while(end >= start){
+      for(i=end;i<arr.length-1;i++){
+          arr[i] = arr[i+1];
+      }
+      end--;
+      arr.pop();
+    }
+      return arr;
+  }
 
-// Intermediate Sums
+// Intermediate Sums--insert sum of every 10 values after 10th value
+function interSum(arr){
+    var sumIndex = 0;
+    var sum = 0;
+    for(i=0;i<arr.length;i++){
+        sum += arr[i];
+        if(i > 0 && i % 10 == 0){
+            sumIndex = i;
+            arr.push(sum);
+            for(j=arr.length-1;j>sumIndex;j--){
+                arr[i] = arr[i-1];
+            }
+            arr[sumIndex] = sum;
+        }
+    }
+    return arr;
+}
 
 // Double Trouble
 
