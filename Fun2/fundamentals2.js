@@ -75,44 +75,57 @@ function fib(num) {
 }
 
 // Sum to One Digit
-// function sumToOne(num){
-//     var sum = 0;
-//     while(num > 0){
-//         for(i=0;i<num.length; i++){
-//             sum += num[i];
-//         }
-//         num--;
-//     }
-// }
+function sumToOne(num) {
+    var sum = 0;
+    while (num > 0 || sum > 9) {
+        if (num === 0) {
+            num = sum;
+            sum = 0;
+        }
+        sum += num % 10;
+        num = Math.floor(num /= 10);
+    }
+    return sum;
+}
 
 // Is Prime
-function isPrime(num){
+function isPrime(num) {
     var mod = 9;
     var prime = true;
-    while(mod > 1){
-        if(num % mod === 0){
+    while (mod > 1) {
+        if (num % mod === 0) {
             prime = false;
             break;
         } else {
-          mod--;
+            mod--;
         }
     }
     return prime;
 }
 
 // Rockin' the Dojo Sweatshirt: sweatshirts cost $20. if you buy 2, you get 9% discount; 19% for 3; 35% for 4+. he doesn't have coins, so round up the price. write function that returns price based on how many sweatshirts you buy
-function sweatshirt(num){
+function sweatshirt(num) {
     var basePrice = 20;
-    if (num == 2){
-        basePrice = Math.ceil((basePrice*num)*0.91);
-    } else if(num == 3){
-        basePrice = Math.ceil((basePrice*num)*0.81);
-    } else if(num >= 4){
-        basePrice = Math.ceil((basePrice*num)*0.65);
+    if (num == 2) {
+        basePrice = Math.ceil((basePrice * num) * 0.91);
+    } else if (num == 3) {
+        basePrice = Math.ceil((basePrice * num) * 0.81);
+    } else if (num >= 4) {
+        basePrice = Math.ceil((basePrice * num) * 0.65);
     }
     return basePrice;
 }
 
 // Extract-o-matic
+function extract(num, place) {
+    var val = Math.floor(num / (10 ** place) % 10 ** (place - 1));
+    return val;
+}
 
 // Most Significant Digit
+function mostSignificant(num) {
+    while (num > 10) {
+        num /= 10;
+    }
+    return Math.floor(num);
+}
