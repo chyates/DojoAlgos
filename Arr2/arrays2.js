@@ -71,3 +71,125 @@ function flatten(arr) {
     }
     return resultArr;
 }
+
+// Median of two sorted arrays: given 2 arrays, possibly of different lengths, return the median value (sum of all values divided by the amount of values). If arrays are the same length, return the average of the two middle values (of all arrays)
+function medSorted(arr1, arr2) {
+    var sumArr1 = 0;
+    var sumArr2;
+    for (i = 0; i < arr1.length; i++) {
+        sumArr2 = 0;
+        for (j = 0; j < arr2.length; j++) {
+            sumArr2 += arr2[j];
+        }
+        sumArr1 += arr1[i];
+    }
+    var med = 0;
+    if ((arr1.length + arr2.length) % 2 !== 0) {
+        med = (sumArr2 + sumArr1) / (arr1.length + arr2.length);
+    } else {
+        med = ((sumArr1 / arr1.length) + (sumArr2 / arr2.length)) / 2;
+    }
+    return med;
+}
+
+// OR:
+
+function findMedian(arr1, arr2) {
+    var joinArr = [];
+    var long = arr1;
+    var short = arr2;
+    if (arr1.length < arr2.length) {
+        long = arr2;
+        short = arr1;
+    }
+
+    var i = 0;
+    var k = 0;
+    while (i <= long.length && k < short.length) {
+        if (long[i] == short[k]) {
+            joinArr.push(long[i]);
+            joinArr.push(short[k]);
+            i++;
+        } else if (long[i] < short[k]) {
+            joinArr.push(long[i]);
+            i++;
+        } else {
+            joinArr.push(short[k]);
+            k++;
+        }
+    }
+    var med = 0;
+    if (joinArr.length % 2 === 0) {
+        med += (joinArr[(joinArr.length / 2) - 1] + joinArr[joinArr.length / 2]) / 2;
+    } else {
+        med += joinArr[Math.floor(joinArr.length / 2)];
+    }
+    return med;
+}
+
+// Last Digit of A to the B: Given two numbers, return the last digit of the result of number 1 raised to the power of number 2
+function digitOfAtoB(num1, num2) {
+    var cyclePlace = num2 % 4;
+    var numMod = num1 % 10;
+    var digit = 0;
+    if (numMod === 1) {
+        digit = 1;
+    } else if (numMod === 5) {
+        digit = 5;
+    } else if (numMod === 6) {
+        digit = 6;
+    } else if (numMod === 9) {
+        if (cyclePlace % 2 === 0) {
+            digit = 1;
+        } else {
+            digit = 9;
+        }
+    } else if (numMod === 4) {
+        if (cyclePlace % 2 === 0) {
+            digit = 6;
+        } else {
+            digit = 4;
+        }
+    } else if (numMod === 3) {
+        if (cyclePlace === 1) {
+            digit = 3;
+        } else if (cyclePlace === 2) {
+            digit = 9;
+        } else if (cyclePlace === 3) {
+            digit = 7;
+        } else if (cyclePlace === 0) {
+            digit = 1;
+        }
+    } else if (numMod === 7) {
+        if (cyclePlace === 1) {
+            digit = 7;
+        } else if (cyclePlace === 2) {
+            digit = 9;
+        } else if (cyclePlace === 3) {
+            digit = 3;
+        } else if (cyclePlace === 0) {
+            digit = 1;
+        }
+    } else if (numMod === 2) {
+        if (cyclePlace === 1) {
+            digit = 2;
+        } else if (cyclePlace === 2) {
+            digit = 4;
+        } else if (cyclePlace === 3) {
+            digit = 8;
+        } else if (cyclePlace === 0) {
+            digit = 6;
+        }
+    } else if (numMod === 8) {
+        if (cyclePlace === 1) {
+            digit = 8;
+        } else if (cyclePlace === 2) {
+            digit = 4;
+        } else if (cyclePlace === 3) {
+            digit = 2;
+        } else if (cyclePlace === 0) {
+            digit = 6;
+        }
+    }
+    return digit;
+}
