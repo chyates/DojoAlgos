@@ -49,6 +49,18 @@ function swapPairs(arr) {
 }
 
 // Array: Remove Duplicates--keep the first instance of duplicate data but remove all others
+function removeNegatives(arr) {
+    var dupeIndex = 0;
+    for (i = 0; i < arr.length - 1; i++) {
+        if (arr[i] == arr[i + 1]) {
+            dupeIndex = i;
+            for (j = dupeIndex; j < arr.length - 1; j++) {
+                arr[j] = arr[j + 1];
+            }
+        }
+    }
+    return arr;
+}
 
 // Array: Min to Front
 function minToFront(arr) {
@@ -70,27 +82,27 @@ function minToFront(arr) {
 }
 
 // Array: Reverse--in place
-function reverseArray(arr){
-    for(i=0;i<arr.length/2;i++){
+function reverseArray(arr) {
+    for (i = 0; i < arr.length / 2; i++) {
         var temp = arr[i];
-        arr[i] = arr[arr.length-1-i];
-        arr[arr.length-1-i] = temp;
+        arr[i] = arr[arr.length - 1 - i];
+        arr[arr.length - 1 - i] = temp;
     }
     return arr;
 }
 
 // Array: Rotate--given an array and a value, shift the array a number of spaces equal to that value
-function shiftBy(arr, num){
-    while(num > 0){
-      for(i=arr.length-1;i>0;i--){
-        var temp = arr[i];
-        arr[i] = arr[i-1];
-        arr[i-1] = temp;
-      }
+function shiftBy(arr, num) {
+    while (num > 0) {
+        for (i = arr.length - 1; i > 0; i--) {
+            var temp = arr[i];
+            arr[i] = arr[i - 1];
+            arr[i - 1] = temp;
+        }
         num--;
     }
     return arr;
-  }
+}
 
 // Array: Filter Range--given array, min, and max, return an array with only values between min and max
 function filterArray(arr, min, max) {
@@ -109,25 +121,25 @@ function filterArray(arr, min, max) {
 }
 
 // Array: Concat--given two arrays, return a new array with values from both arrays: first the first and then the second
-function concat(arr1, arr2){
+function concat(arr1, arr2) {
     var resultArr = [];
-    for(i = 0; i < arr1.length; i++){
+    for (i = 0; i < arr1.length; i++) {
         resultArr.push(arr1[i]);
     }
-    for(j = 0; j<arr2.length; j++){
+    for (j = 0; j < arr2.length; j++) {
         resultArr.push(arr2[j]);
     }
     return resultArr;
 }
 
 // Array: Remove Negatives
-function removeNegatives(arr){
+function removeNegatives(arr) {
     var negIndex = 0;
-    for(i=0;i<arr.length; i++){
-        if(arr[i] < 0){
+    for (i = 0; i < arr.length; i++) {
+        if (arr[i] < 0) {
             negIndex = i;
-            for(j=negIndex; j<arr.length-1; j++){
-                arr[j] = arr[j+1];
+            for (j = negIndex; j < arr.length - 1; j++) {
+                arr[j] = arr[j + 1];
             }
             arr.pop();
             i--;
@@ -137,18 +149,18 @@ function removeNegatives(arr){
 }
 
 // Array: Second to Last
-function secondToLast(arr){
-    if(arr.length > 1){
-        return arr[arr.length-2];
+function secondToLast(arr) {
+    if (arr.length > 1) {
+        return arr[arr.length - 2];
     } else {
         return false;
     }
 }
 
 // Array: Nth to Last
-function nthToLast(arr, num){
-    if(arr.length > 1){
-        return arr[arr.length-num];
+function nthToLast(arr, num) {
+    if (arr.length > 1) {
+        return arr[arr.length - num];
     } else {
         return false;
     }
@@ -176,39 +188,39 @@ function nthToLast(arr, num){
 // Array: Nth Largest
 
 // Array: Shuffle
-function shuffleArr(arr){
-    var randIndex = Math.floor((Math.random() * (0, arr.length-1) + 0));
-    for(i=0;i<arr.length;i++){
+function shuffleArr(arr) {
+    var randIndex = Math.floor((Math.random() * (0, arr.length - 1) + 0));
+    for (i = 0; i < arr.length; i++) {
         var temp = arr[i];
-        arr[i]= arr[randIndex];
+        arr[i] = arr[randIndex];
         arr[randIndex] = temp;
     }
     return arr;
 }
 
 // Array: Remove Range
-function removeRange(arr, start, end){
-    while(end >= start){
-      for(i=end;i<arr.length-1;i++){
-          arr[i] = arr[i+1];
-      }
-      end--;
-      arr.pop();
+function removeRange(arr, start, end) {
+    while (end >= start) {
+        for (i = end; i < arr.length - 1; i++) {
+            arr[i] = arr[i + 1];
+        }
+        end--;
+        arr.pop();
     }
-      return arr;
-  }
+    return arr;
+}
 
 // Intermediate Sums--insert sum of every 10 values after 10th value
-function interSum(arr){
+function interSum(arr) {
     var sumIndex = 0;
     var sum = 0;
-    for(i=0;i<arr.length;i++){
+    for (i = 0; i < arr.length; i++) {
         sum += arr[i];
-        if(i > 0 && i % 10 == 0){
+        if (i > 0 && i % 10 == 0) {
             sumIndex = i;
             arr.push(sum);
-            for(j=arr.length-1;j>sumIndex;j--){
-                arr[i] = arr[i-1];
+            for (j = arr.length - 1; j > sumIndex; j--) {
+                arr[i] = arr[i - 1];
             }
             arr[sumIndex] = sum;
         }
@@ -219,3 +231,23 @@ function interSum(arr){
 // Double Trouble
 
 // Zip It
+function zip(arr1, arr2) {
+    var long = arr1;
+    var short = arr2;
+    var zipped = [];
+    if (long.length < short.length) {
+        long = arr2;
+        short = arr1;
+    }
+    iLong = 0;
+    iShort = 0;
+    while (iLong < long.length || iShort < short.length) {
+        zipped.push(long[iLong]);
+        if (short[iLong]) {
+            zipped.push(short[iShort]);
+        }
+        iLong++;
+        iShort++;
+    }
+    return zipped;
+}

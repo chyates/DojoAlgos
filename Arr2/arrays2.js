@@ -72,6 +72,25 @@ function flatten(arr) {
     return resultArr;
 }
 
+// Remove Duplicates:
+function removeDupes(arr) {
+    var uniqueArr = [];
+    var count = 0;
+    for (i = 0; i < arr.length; i++) {
+        var current = arr[i];
+        for (j = 0; j < arr.length; j++) {
+            if (current !== arr[j]) {
+                count++;
+            }
+        }
+        if (count === arr.length - 1) {
+            uniqueArr.push(current);
+        }
+        count = 0;
+    }
+    return uniqueArr;
+}
+
 // Median of two sorted arrays: given 2 arrays, possibly of different lengths, return the median value (sum of all values divided by the amount of values). If arrays are the same length, return the average of the two middle values (of all arrays)
 function medSorted(arr1, arr2) {
     var sumArr1 = 0;
@@ -192,4 +211,15 @@ function digitOfAtoB(num1, num2) {
         }
     }
     return digit;
+}
+
+// Missing Digit:
+function missingInt(arr) {
+    var last = arr.length + 1;
+    var expected = (last * (last + 1)) / 2;
+    var actual = 0;
+    for (i = 0; i < arr.length; i++) {
+        actual += arr[i];
+    }
+    return expected - actual;
 }
