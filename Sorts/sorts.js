@@ -64,3 +64,5 @@ function insertionSort(arr) {
     }
     return arr;
 }
+
+// Merge 2 sorted arrays

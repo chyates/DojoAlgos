@@ -181,10 +181,46 @@ function getJiggy(str) {
 // Coin Change with Object
 // Max, Min, Avg with Object
 // Zip Arrays into Map
+function zipArraysToMap(arr1, arr2) {
+    var result = {};
+    for (i = 0; i < arr1.length; i++) {
+        result[arr1[i]] = arr2[i];
+    }
+    return result;
+}
+
 // Invert Hash
+function invertHash(obj) {
+    var newObj = {};
+    for (var key in obj) {
+        newObj[obj[key]] = key;
+    }
+    return newObj;
+}
+
 // Number of Values (w/o .Length)
+function notDotLength(obj) {
+    var count = 0;
+    for (var key in obj) {
+        count++;
+    }
+    return count;
+}
+
 // String.concat (start replicating built-in functions)
+
+
 // String.slice
+function strSplice(str, start, end) {
+    var newString = "";
+    for (i = 0; i < str.length; i++) {
+        if (i < start || i > end) {
+            newString += str[i];
+        }
+    }
+    return newString;
+}
+
 // String.trim
 // String.split
 // String.search(val)
