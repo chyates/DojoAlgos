@@ -66,3 +66,33 @@ function insertionSort(arr) {
 }
 
 // Merge 2 sorted arrays
+function combineArrays(arr1, arr2) {
+    var long = arr1;
+    var short = arr2;
+    if (arr1.length < arr2.length) {
+        long = arr2;
+        short = arr1;
+    }
+
+    var longIndex = 0;
+    var shortIndex = 0;
+    var result = [];
+
+    while (longIndex < long.length || shortIndex < short.length) {
+        if (long[longIndex] < short[shortIndex]) {
+            result.push(long[longIndex]);
+            longIndex++;
+        }
+        else if (long[longIndex] === short[shortIndex]) {
+            result.push(long[longIndex]);
+            result.push(short[shortIndex]);
+            longIndex++;
+            shortIndex++;
+        }
+        else {
+            result.push(short[shortIndex]);
+            shortIndex++;
+        }
+    }
+    return result;
+}
