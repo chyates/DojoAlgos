@@ -314,8 +314,37 @@ function removeVal(val) {
 // SList: Split on Value
 
 // SList: Remove Negatives
+function removeNegatives(){
+    if(!this.head){
+        return null;
+    }
+    var walker = this.head;
+    var found = false;
+    while(walker){
+        if(walker.next.value < 0){
+            found = true;
+            walker.next = walker.next.next;
+            return this;
+        }
+        walker = walker.next;
+    }
+    if(!found){
+        return "There are no nodes with negative values in this list";
+    }
+}
 
 // SList: Concat
+function concatSLL(list1, list2){
+    if(!list1.head || !list2.head){
+        return null;
+    }
+    var walker = list1.head;
+    while(walker.next){
+        walker = walker.next;
+    }
+    walker.next = list2.head;
+    return list1;
+}
 
 // SList: Partition
 
@@ -330,3 +359,18 @@ function removeVal(val) {
 // Zip SList
 
 // De-Dupe SList
+function deDupeSLL(){
+    var currentNode = this.head;
+    if(!currentNode || !currentNode.next){
+        return "This list is too short to contain duplicates";
+    }
+    var walker = this.head;
+    while(walker.next != null){
+        if(walker.value == walker.next.value){
+            walker.next = walker.next.next;
+        } else {
+            walker = walker.next;
+        }
+    }
+    return this;
+}
