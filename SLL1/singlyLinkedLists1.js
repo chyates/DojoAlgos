@@ -24,6 +24,7 @@ function addFront(val) {
 }
 
 // List: Contains
+// ----ITERATIVELY----
 function contains(val) {
     var walker = this.head;
     while (walker) {
@@ -33,6 +34,21 @@ function contains(val) {
         walker = walker.next;
     }
     return false;
+}
+// ----RECURSIVELY----
+function rContains(val) {
+    if (!this.head) {
+        return null;
+    }
+    var exists = false;
+    function search(node, val) {
+        if (node.value == val) {
+            exists = true;
+            return exists;
+        }
+        search(node.next, val);
+    }
+    search(this.head);
 }
 
 // List: Remove Front
@@ -45,9 +61,17 @@ function removeFront() {
     return this;
 }
 
-// List: Front
+// List: Front: return the value of the first node in the list
+function frontVal() {
+    if (!this.head) {
+        return null;
+    }
+    firstNode = this.head;
+    return firstNode.value;
+}
 
 // SList: Length
+// ----ITERATIVELY----
 function length() {
     var count = 0;
     if (!this.head) {
@@ -62,7 +86,34 @@ function length() {
     return count;
 }
 
+// ----RECURSIVELY----
+function rLength() {
+    var count = 0;
+    if (!this.head) {
+        return 0;
+    }
+    function getCount(node) {
+        if (node == null) {
+            return count;
+        }
+        count++;
+        getCount(node.next);
+    }
+    getCount(this.head);
+}
 // SList: Display
+function printList() {
+    if (!this.head) {
+        return null;
+    }
+    var strVals = "";
+    var walker = this.head;
+    while (walker) {
+        strVals += walker.value;
+        walker = walker.next;
+    }
+    return strVals;
+}
 
 // SList: Max
 function findMax() {
@@ -115,23 +166,150 @@ function findAvg() {
     return avg;
 };
 
-// SList: Back
+// SList: Back: return the last value in a list
+function displayLast() {
+    if (!this.head) {
+        return null;
+    }
+    var walker = this.head;
+    while (walker) {
+        if (walker.next == null) {
+            return walker.value;
+        }
+        walker = walker.next;
+    }
+}
 
 // SList: Remove Back
+function removeBack() {
+    if (!this.head) {
+        return null;
+    }
+    var walker = this.head;
+    while (walker.next) {
+        if (walker.next.next == null) {
+            walker.next = null;
+        }
+        walker = walker.next;
+    }
+    return this;
+}
 
 // SList: Add Back
+function addBack(val) {
+    if (!this.head) {
+        return null;
+    }
+    var addNode = new Node(val);
+    var walker = this.head;
+    while (walker.next) {
+        walker = walker.next;
+    }
+    walker.next = addNode;
+    return this;
+}
 
 // SList: Move Min to Front
+function minToFront(){
+    if(!this.head){
+        return null;
+    }
+    var currentNode = this.head;
+    var min = currentNode.value;
+    var minNode = currentNode;
+    var walker = this.head;
+    var walker2 = currentNode.next;
+    while(walker && walker2){
+        if(walker2.value < min){
+            minNode = walker2;
+            walker.next = walker2.next;
+            walker2.next = this.head;
+            this.head = walker2;
+        }
+        walker = walker.next;
+        walker2 = walker2.next;
+    }
+    return this;
+}
 
 // SList: Move Max to Back
+function maxToBack(){
+    if(!this.head){
+        return null;
+    }
+    var currentNode = this.head;
+    var max = currentNode.value;
+    var maxNode = currentNode;
+    var walker = this.head;
+    var walker2 = currentNode.next;
+    while(walker && walker2){
+        if(walker2.value > max){
+            maxNode = walker2;
+            walker.next = walker2.next;
+        }
+        walker = walker.next;
+        walker2 = walker2.next;
+    }
+    walker2.next = maxNode;
+    return this;
+}
 
-// SList: Prepend Val
+// SList: Prepend Val: add node w/given val before a specified node, if that node exists
+function addBefore(before, val) {
+    if (!this.head) {
+        return null;
+    }
+    var walker = this.head;
+    var thisNode = new Node(val);
+    var found = false;
+    while (walker) {
+        if (walker.next.value == before) {
+            found = true;
+            thisNode.next = walker.next;
+            walker.next = thisNode;
+        }
+    }
+    return this;
+}
 
-// SList: Append Val
+// SList: Append Val: add node w/ given val after a specified (given) node, if that node exists
+function addAfter(after, val) {
+    if (!this.head) {
+        return null;
+    }
+    var walker = this.head;
+    var thisNode = new Node(val);
+    while (walker) {
+        if (walker.value == after) {
+            thisNode.next = walker.next;
+            walker.next = thisNode;
+        }
+        walker = walker.next;
+    }
+    return this;
+}
 
 // Create SList
 
-// SList: Remove Val
+// SList: Remove Val: remove a node w/ a given value
+function removeVal(val) {
+    if (!this.head) {
+        return null;
+    }
+    var walker = this.head;
+    var found = false;
+    while (walker) {
+        if (walker.next.value == val) {
+            found = true;
+            walker.next = walker.next.next;
+            return this;
+        }
+        walker = walker.next;
+    }
+    if (!found) {
+        return "No node with the given value was found in the list";
+    }
+}
 
 // SList: Split on Value
 
