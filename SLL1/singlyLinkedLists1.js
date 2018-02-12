@@ -197,10 +197,10 @@ function removeBack() {
 
 // SList: Add Back
 function addBack(val) {
-    if (!this.head) {
-        return null;
-    }
     var addNode = new Node(val);
+    if (!this.head) {
+        this.head = addNode;
+    }
     var walker = this.head;
     while (walker.next) {
         walker = walker.next;
@@ -298,7 +298,7 @@ function removeVal(val) {
     }
     var walker = this.head;
     var found = false;
-    while (walker) {
+    while (walker.next) {
         if (walker.next.value == val) {
             found = true;
             walker.next = walker.next.next;
@@ -349,12 +349,44 @@ function concatSLL(list1, list2){
 // SList: Partition
 
 // SList: Second to Last
+function secondToLast(){
+    var currentNode = this.head;
+    if(!currentNode || !currentNode.next){
+        return "This list is not long enough";
+    } else {
+        var walker = this.head;
+        while(walker.next){
+            if(walker.next.next === null){
+                return walker.next.value;
+            }
+            walker = walker.next;
+        }
+    }
+}
 
 // SList: Delete Given Node
 
 // SList: Copy
 
 // SList: Filter
+function filter(highVal, lowVal){
+    if(!this.head){
+        return null;
+    } else {
+        var walker = this.head;
+        var found = false;
+        while(walker.next !== null){
+            if(walker.next.value > highVal || walker.next.value < lowVal){
+                found = true; 
+                walker.next = walker.next.next;
+            }
+            walker = walker.next;
+        }
+        if(!found){
+            return "There are no nodes higher or lower than the specified values";
+        }
+    }
+}
 
 // Zip SList
 
@@ -374,3 +406,136 @@ function deDupeSLL(){
     }
     return this;
 }
+
+// namespace LinkedListProblem
+// {
+//     class RotateList
+//     {
+//         public class ListNode
+//         {
+//             public int val;
+//             public ListNode next;
+//             public ListNode(int x) { val = x; }
+//         }
+
+//         static void Main(string[] args)
+//         {
+//             ListNode n = new ListNode(1);
+//             n.next = new ListNode(2);
+//             n.next.next = new ListNode(3);
+//             n.next.next.next = new ListNode(4);
+//             n.next.next.next.next = new ListNode(5);
+//             ListNode rotated = RotateRight(n, 2);
+//         }
+
+//         /// <summary>
+//         /// Method to rotatw the linked list to the right by the kth place.
+//         /// </summary>
+//         /// <param name="head">head of the linked list</param>
+//         /// <param name="k">k places to rotate</param>
+//         /// <returns>new head of linked list</returns>
+//         static public ListNode RotateRight(ListNode head, int k)
+//         {
+//             // if list is null or k is 0 (no rotation)
+//             if ((head == null) || (k == 0))
+//                 return head;
+
+//             // count length of list
+//             int length = 0;
+//             ListNode copy = head;
+
+//             while (copy != null)
+//             {
+//                 copy = copy.next;
+//                 length++;
+//             }
+
+//             // rotation asked is greater then the total length of the list.
+//             if (length <= k)
+//             {
+//                 k = k % length;
+//             }
+
+//             // if the length is 1, no rotation required. 
+//             // or k = 0, no rotation required.
+//             if ((length == 1) || (k == 0))
+//             {
+//                 return head;
+//             }
+
+//             // newHeadIndex'th item will be new head in the list
+//             int newHeadIndex = length - k + 1;
+
+//             copy = head;
+//             // find the new tail of the list 
+//             for (int i = 1; i < newHeadIndex - 1; i++)
+//             {
+//                 copy = copy.next;
+//             }
+
+//             // save the new head
+//             ListNode NewHead = copy.next;
+
+//             // nullify the next of tail
+//             copy.next = null;
+
+//             copy = NewHead;
+
+//             // find the current tail of the list
+//             while (copy.next != null)
+//             {
+//                 copy = copy.next;
+//             }
+
+//             // add the head of the current list in the tail of new list
+//             copy.next = head;
+
+//             return NewHead;
+//         }
+//     }
+// }
+
+// void rotate(int k)
+//     {
+//         if (k == 0) return;
+ 
+//         // Let us understand the below code for example k = 4
+//         // and list = 10->20->30->40->50->60.
+//         Node current  = head;
+ 
+//         // current will either point to kth or NULL after this
+//         // loop. current will point to node 40 in the above example
+//         int count = 1;
+//         while (count < k && current !=  null)
+//         {
+//             current = current.next;
+//             count++;
+//         }
+ 
+//         // If current is NULL, k is greater than or equal to count
+//         // of nodes in linked list. Don't change the list in this case
+//         if (current == null)
+//             return;
+ 
+//         // current points to kth node. Store it in a variable.
+//         // kthNode points to node 40 in the above example
+//         Node kthNode = current;
+ 
+//         // current will point to last node after this loop
+//         // current will point to node 60 in the above example
+//         while (current.next != null)
+//             current = current.next;
+ 
+//         // Change next of last node to previous head
+//         // Next of 60 is now changed to node 10
+ 
+//         current.next = head;
+ 
+//         // Change head to (k+1)th node
+//         // head is now changed to node 50
+//         head = kthNode.next;
+ 
+//         // change next of kth node to null
+//         kthNode.next = null;
+ 
+//     }

@@ -5,6 +5,17 @@ function removeBlanks(str) {
     return string2;
 }
 
+// WITHOUT JOIN:
+function removeBlanks(str) {
+    var newString = '';
+    for (i = 0; i < str.length; i++) {
+        if (str[i] != ' ') {
+            newString += str[i];
+        }
+    }
+    return newString;
+}
+
 // Strings: Get Digits
 function getDigits(str) {
     var result = str.split('');
@@ -43,6 +54,18 @@ function countNonSpaces(str) {
     var nonCount = 0;
     for (i = 0; i < result.length; i++) {
         if (result[i] !== " ") {
+            nonCount++;
+        }
+    }
+    return nonCount;
+}
+
+// WITHOUT JOIN:
+function countNonSpaces(str) {
+    // var result = str.split("");
+    var nonCount = 0;
+    for (i = 0; i < str.length; i++) {
+        if (str[i] !== " ") {
             nonCount++;
         }
     }
