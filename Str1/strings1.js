@@ -32,14 +32,11 @@ function getDigits(str) {
 }
 // Acronyms
 function acronym(str) {
-    var acArr = [];
     var strAcronym = "";
     var start = 0;
-    var end = 0;
     for (i = 0; i < str.length; i++) {
         if (str[i] === " ") {
             strAcronym += str[start];
-            end = i - 1;
             start = i + 1;
         }
         if (i === str.length - 1) {
@@ -48,6 +45,7 @@ function acronym(str) {
     }
     return strAcronym.toUpperCase();
 }
+
 // Count Non-Spaces
 function countNonSpaces(str) {
     var result = str.split("");

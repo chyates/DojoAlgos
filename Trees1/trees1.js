@@ -64,9 +64,29 @@ BST.prototype.findMin = function(){
 }
 // BST: Size--count the length of the tree (recursive)
 // BST: Contains--given a value, return true or false if that value is in the tree
-BST.prototype.contains = function(val){
-    
+BST.prototype.contains = function (val) {
+    if (!this.root) {
+        return null;
+    } else {
+        var exists = false;
+        function rContains(node, val) {
+            if (val > node.value) {
+                if (node.value == val) {
+                    exists = true;
+                }
+                rContains(node.right, val);
+            } else if (val < node.value) {
+                if (node.value == val) {
+                    exists = true;
+                }
+                rContains(node.left, val);
+            }
+        }
+    }
+    rContains(this.root, val);
+    return exists;
 }
+
 // BST: Max--find the max value of the tree
 BST.prototype.findMax = function(){
     if(this.root == null){

@@ -167,25 +167,34 @@ function nthToLast(arr, num) {
 }
 
 // Array: Second Largest
-// function secondLargest(arr){
-//     var max = arr[0];
-//     var min = arr[0];
-//     var second = arr[0];
-//     for(i=0;i<arr.length; i++){
-//         if(arr[i] > max){
-//             max = arr[i];
-//         }
-//         if(arr[i] < min){
-//             min = arr[i];
-//         }
-//         if(arr[i] > min && arr[i] < max){
-//             second = arr[i];
-//         }
-//     }
-//     return second;
-// }
+function secondLargest(arr) {
+    var first = arr[0];
+    var second = arr[0];
+    for (var i = 1; i < arr.length; i++) {
+        if (first < arr[i]) {
+            second = first;
+            first = arr[i];
+        } else if (second < arr[i]) {
+            second = arr[i];
+        }
+    }
+    return second;
+}
 
 // Array: Nth Largest
+function nthLargest(arr, num) {
+    for (i = 0; i < arr.length - 1; i++) {
+        var count = 0;
+        for (j = 1; j < arr.length; j++) {
+            if (arr[i] < arr[j]) {
+                count++;
+            }
+        }
+        if (count == num - 1) {
+            return arr[i];
+        }
+    }
+}
 
 // Array: Shuffle
 function shuffleArr(arr) {
@@ -229,6 +238,14 @@ function interSum(arr) {
 }
 
 // Double Trouble
+function double(arr) {
+    var results = [];
+    for (i = 0; i < arr.length; i++) {
+        results.push(arr[i]);
+        results.push(arr[i]);
+    }
+    return results;
+}
 
 // Zip It
 function zip(arr1, arr2) {
