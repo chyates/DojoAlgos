@@ -219,30 +219,26 @@ function removeRange(arr, start, end) {
     return arr;
 }
 
-// Intermediate Sums--insert sum of every 10 values after 10th value
-function interSum(arr) {
-    var sumIndex = 0;
-    var sum = 0;
-    for (i = 0; i < arr.length; i++) {
-        sum += arr[i];
-        if (i > 0 && i % 10 == 0) {
-            sumIndex = i;
-            arr.push(sum);
-            for (j = arr.length - 1; j > sumIndex; j--) {
-                arr[i] = arr[i - 1];
-            }
-            arr[sumIndex] = sum;
-        }
-    }
-    return arr;
-}
-
 // Double Trouble
 function double(arr) {
     var results = [];
     for (i = 0; i < arr.length; i++) {
         results.push(arr[i]);
         results.push(arr[i]);
+    }
+    return results;
+}
+
+// WITH NESTED LOOPS:
+function double(arr) {
+    var results = [];
+    var times = 2;
+    for (i = 0; i < arr.length; i++) {
+        while (times > 0) {
+            results.push(arr[i]);
+            times--;
+        }
+        times = 2;
     }
     return results;
 }
