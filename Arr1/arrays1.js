@@ -49,7 +49,7 @@ function swapPairs(arr) {
 }
 
 // Array: Remove Duplicates--keep the first instance of duplicate data but remove all others
-function removeNegatives(arr) {
+function removeDuplicates(arr) {
     var dupeIndex = 0;
     for (i = 0; i < arr.length - 1; i++) {
         if (arr[i] == arr[i + 1]) {
